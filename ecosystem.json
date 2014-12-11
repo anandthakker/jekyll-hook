@@ -19,7 +19,7 @@
       "ref"  : "origin/parkmath",
       "repo" : "git@github.com:anandthakker/jekyll-hook.git",
       "path" : "/var/www/jekyll-hook",
-      "post-deploy" : ". /home/node/.nvm/nvm.sh && npm install && pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : ". /home/node/.nvm/nvm.sh && npm install && cp /home/node/jekyll-hook-config.json ./config.json && pm2 startOrRestart ecosystem.json --env production"
     }
   }
 }
