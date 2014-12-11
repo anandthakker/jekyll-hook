@@ -27,3 +27,11 @@ cd -
 cd $source
 jekyll build -s $source -d $build
 cd -
+
+# Prerender the math
+if [ ! -d $build/books-prerendered ]; then
+  mkdir $build/books-prerendered
+fi
+for filename in $build/books/*.html; do
+  ./node_modules/MathJax-node/bin/page2mml < "$filename" > "$build/books-prerendered/`basename $filename`";
+done
