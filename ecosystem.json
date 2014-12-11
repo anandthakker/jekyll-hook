@@ -1,0 +1,25 @@
+{
+  "apps" : [
+    {
+      "name"      : "jekyll-hook",
+      "script"    : "jekyll-hook.js",
+      "env": {
+      },
+      "env_production" : {
+        "NODE_ENV": "production",
+        "PORT": "4007"
+      }
+    }
+  ],
+
+  "deploy" : {
+    "production" : {
+      "user" : "node",
+      "host" : "anandthakker.net",
+      "ref"  : "origin/parkmath",
+      "repo" : "git@github.com:anandthakker/jekyll-hook.git",
+      "path" : "/var/www/jekyll-hook",
+      "post-deploy" : ". /home/node/.nvm/nvm.sh && npm install && pm2 startOrRestart ecosystem.json --env production"
+    }
+  }
+}
