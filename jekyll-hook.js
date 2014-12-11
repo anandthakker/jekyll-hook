@@ -117,6 +117,8 @@ app.post('/hooks/jekyll/*', function(req, res) {
                 if (typeof cb === 'function') cb();
                 return;
             }
+            
+            console.log('Successfully built: ' + data.owner + '/' + data.repo + '; publishing...');
 
             // Run publish script
             run(publish_script, params, function(err) {
