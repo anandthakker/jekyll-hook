@@ -111,7 +111,7 @@ app.post('/hooks/jekyll/*', function(req, res) {
         // Run build script
         run(build_script, params, function(err) {
             if (err) {
-                console.log('Failed to build: ' + data.owner + '/' + data.repo);
+                console.log('Failed to build: ' + data.owner + '/' + data.repo, err);
                 send('Your website at ' + data.owner + '/' + data.repo + ' failed to build.', 'Error building site', data);
 
                 if (typeof cb === 'function') cb();
@@ -123,7 +123,7 @@ app.post('/hooks/jekyll/*', function(req, res) {
             // Run publish script
             run(publish_script, params, function(err) {
                 if (err) {
-                    console.log('Failed to publish: ' + data.owner + '/' + data.repo);
+                    console.log('Failed to publish: ' + data.owner + '/' + data.repo, err);
                     send('Your website at ' + data.owner + '/' + data.repo + ' failed to publish.', 'Error publishing site', data);
 
                     if (typeof cb === 'function') cb();

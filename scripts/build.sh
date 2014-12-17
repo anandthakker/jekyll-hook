@@ -25,13 +25,17 @@ cd -
 
 # Run jekyll
 cd $source
+echo "jekyll-hook: running jekyll build"
 jekyll build -s $source -d $build
 cd -
 
 # Prerender the math
+echo "jekyll-hook: prerendering math"
 if [ ! -d $build/books-prerendered ]; then
   mkdir $build/books-prerendered
 fi
 for filename in $build/books/*.html; do
   ./node_modules/MathJax-node/bin/page2mml < "$filename" > "$build/books-prerendered/`basename $filename`";
 done
+
+echo "jekyll-hook: build complete"
